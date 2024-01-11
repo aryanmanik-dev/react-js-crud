@@ -1,4 +1,5 @@
 const Schedule = require("../models/schedulerSchema");
+const mongoose = require('mongoose');
 
 // GET all schedules or filtered schedules
 // GET all schedules or filtered schedules
