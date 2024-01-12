@@ -1,5 +1,5 @@
 const Schedule = require("../models/schedulerSchema");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 // GET all schedules or filtered schedules
 // GET all schedules or filtered schedules
@@ -113,10 +113,29 @@ const createSchedule = async (req, res) => {
   }
 };
 
+// GET a specific schedule by Title
+const getScheduleByTitle = async (req, res) => {
+  try {
+    const titleToSearch = req.params.title;
+
+    // Assuming you have a Schedule model defined using mongoose
+    const schedule = await Schedule.findOne({ title: titleToSearch });
+
+    if (!schedule) {
+      return res.status(404).json({ message: "Schedule not found" });
+    }
+
+    res.json(schedule);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getAllSchedules,
   getScheduleById,
   updateSchedule,
   deleteSchedule,
   createSchedule,
+  getScheduleByTitle
 };
