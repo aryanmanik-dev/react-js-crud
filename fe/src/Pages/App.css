@@ -5,43 +5,59 @@
   height: 50px;
 }
 .left__sidebar {
-  /* width: 100px; */
-  background-color: #590667f7 !important;
-  height: 95vh;
+  width: 100px;
+  background-color: #391e5a !important;
+  height: 100vh;
 }
 
-.scheduler__table thead{
-    background-color: #80808054;
+.scheduler__table thead {
+  background: #f3f3f9;
 }
-.scheduler__table tbody{
-    background-color: white;
+.scheduler__table tbody {
+  background-color: white;
 }
-
 
 .popover-container {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .popover-trigger {
-    cursor: pointer;
-    padding: 10px;
-    background-color: #590667f7;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-  }
-  
+  position: relative;
+  display: inline-block;
+}
+
+.popover-trigger {
+  cursor: pointer;
+  padding: 10px;
+  background: #391e5a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+
+.popover-content {
+  position: absolute;
+  top: 100%;
+  /* left: 0; */
+  right: 0;
+  z-index: 1;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-width: 400px;
+  width: 600px;
+}
+
+@media only screen and (max-width: 767px) {
   .popover-content {
-    position: absolute;
-    top: 100%;
-    /* left: 0; */
-    right: 0;
-    z-index: 1;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    min-width: 400px;
-    width: 600px;
+    width: auto !important;
   }
+}
+
+.logout-btn{
+  background-color: #391e5a !important;
+
+}
+.circle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid;
+}
