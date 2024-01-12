@@ -19,12 +19,11 @@ const Scheduler = () => {
   const [isEditVisible, setIsisEditVisible] = useState(false);
   const [Schdata, setData] = useState([]);
   const [formData, setFormData] = useState({
-    // email: "string@gmail.com",
     title: "",
     description: "",
     subject: "",
     frequency: "",
-    repeat: 3,
+    repeat: "0",
     time: "",
   });
   const popoverRef = useRef(null);
@@ -57,7 +56,7 @@ const Scheduler = () => {
         console.log("Data successfully submitted!");
 
         togglePopover();
-
+        setFormData(formData);
         fetchData();
 
         // Add any additional logic here (e.g., redirect or show success message)
@@ -67,6 +66,8 @@ const Scheduler = () => {
         togglePopover();
 
         fetchData();
+        setFormData(formData);
+
       }
     } catch (error) {
       console.error("Error:", error);
@@ -75,6 +76,7 @@ const Scheduler = () => {
 
   const togglePopover = () => {
     setIsVisible(!isVisible);
+    setFormData(formData);
   };
   const edittogglePopover = (id: number) => {
     setIsisEditVisible(!isEditVisible);
@@ -242,7 +244,7 @@ const Scheduler = () => {
                         />
                       </div>
 
-                      <div>
+                      {/* <div>
                         <label className="form-label">Frequency:</label>
                         <select
                           name="frequency"
@@ -250,37 +252,67 @@ const Scheduler = () => {
                           value={formData.frequency}
                           onChange={handleChange}
                         >
-                          <option value="meekly">Weekly</option>
+                          <option value="weekly">Weekly</option>
                           <option value="monthly">Monthly</option>
                           <option value="daily">Daily</option>
                         </select>
-                      </div>
-
+                      </div> */}
                       <div>
                         <label className="form-label">Repeat:</label>
-                        <div className="row justify-content-center">
-                          <span className="btn btn-white mx-1 circle-btn">
-                            S
-                          </span>
-                          <span className="btn btn-white mx-1 circle-btn">
-                            M
-                          </span>
-                          <span className="btn btn-white mx-1 circle-btn">
-                            T
-                          </span>
-                          <span className="btn btn-white mx-1 circle-btn">
-                            W
-                          </span>
-                          <span className="btn btn-white mx-1 circle-btn">
-                            T
-                          </span>
-                          <span className="btn btn-white mx-1 circle-btn">
-                            F
-                          </span>
-                          <span className="btn btn-white mx-1 circle-btn">
-                            S
-                          </span>
-                        </div>
+                        <select
+                          name="frequency"
+                          className="form-control"
+                          value={formData.frequency}
+                          onChange={handleChange}
+                        >
+                          <option value="0">Please Select</option>
+                          <option value="daily">Daily</option>
+                          <option value="weekly">Weekly</option>
+                          <option value="monthly">Monthly</option>
+                        </select>
+
+                        {formData.frequency === "weekly" && (
+                          <div>
+                            <label className="form-label">Select Day:</label>
+                            <select
+                              name="repeat"
+                              className="form-control"
+                              value={formData.repeat}
+                              onChange={handleChange}
+                            >
+                              <option value="0">Please Select</option>
+                              <option value="1">Sunday</option>
+                              <option value="2">Monday</option>
+                              <option value="3">Tuesday</option>
+                              <option value="4">Wednesday</option>
+                              <option value="5">Thursday</option>
+                              <option value="6">Friday</option>
+                              <option value="7">Saturday</option>{" "}
+                            </select>
+                          </div>
+                        )}
+
+                        {formData.frequency === "monthly" && (
+                          <div>
+                            <label className="form-label">Select Day:</label>
+                            <select
+                              name="repeat"
+                              className="form-control"
+                              value={formData.repeat}
+                              onChange={handleChange}
+                            >
+                              <option value="0">Please Select</option>
+                              <option value="2">Monday</option>
+                              <option value="6">Friday</option>
+                            </select>
+                          </div>
+                        )}
+
+                        {formData.frequency === "daily" && (
+                          <div>
+                            <label className="form-label">No Repeat:</label>
+                          </div>
+                        )}
                       </div>
 
                       <div>
@@ -295,6 +327,15 @@ const Scheduler = () => {
                           <option value="1:00 AM">1:00 AM</option>
                           <option value="2:00 AM">2:00 AM</option>
                           <option value="3:00 AM">3:00 AM</option>
+                          <option value="4:00 AM">4:00 AM</option>
+                          <option value="5:00 AM">5:00 AM</option>
+                          <option value="6:00 AM">6:00 AM</option>
+                          <option value="7:00 AM">7:00 AM</option>
+                          <option value="8:00 AM">8:00 AM</option>
+                          <option value="9:00 AM">9:00 AM</option>
+                          <option value="10:00 AM">10:00 AM</option>
+                          <option value="11:00 AM">11:00 AM</option>
+                          <option value="12:00 PM">12:00 PM</option>
                         </select>
                       </div>
 
@@ -351,6 +392,7 @@ const Scheduler = () => {
                               onChange={handleEditInputChange}
                             />
                           </div>
+
                           <div>
                             <label className="form-label">Subject:</label>
                             <input
@@ -374,7 +416,7 @@ const Scheduler = () => {
                               <option value="daily">Daily</option>
                             </select>
                           </div>
-                          <div>
+                          {/* <div>
                             <label className="form-label">Repeat:</label>
                             <input
                               type="number"
@@ -383,37 +425,53 @@ const Scheduler = () => {
                               value={isEdit.repeat}
                               onChange={handleEditInputChange}
                             />
-                          </div>
+                          </div> */}
 
-                          <div>
-                            <label className="form-label">Repeat:</label>
-                            <div className="row justify-content-center">
-                              <span className="btn btn-white mx-1 circle-btn">
-                                S
-                              </span>
-                              <span className="btn btn-white mx-1 circle-btn">
-                                M
-                              </span>
-                              <span className="btn btn-white mx-1 circle-btn">
-                                T
-                              </span>
-                              <span className="btn btn-white mx-1 circle-btn">
-                                W
-                              </span>
-                              <span className="btn btn-white mx-1 circle-btn">
-                                T
-                              </span>
-                              <span className="btn btn-white mx-1 circle-btn">
-                                F
-                              </span>
-                              <span className="btn btn-white mx-1 circle-btn">
-                                S
-                              </span>
+                          {isEdit.frequency === "weekly" && (
+                            <div>
+                              <label className="form-label">Select Day:</label>
+                              <select
+                                name="repeat"
+                                className="form-control"
+                                value={isEdit.repeat}
+                                onChange={handleChange}
+                              >
+                                <option value="0">Please Select</option>
+                                <option value="1">Sunday</option>
+                                <option value="2">Monday</option>
+                                <option value="3">Tuesday</option>
+                                <option value="4">Wednesday</option>
+                                <option value="5">Thursday</option>
+                                <option value="6">Friday</option>
+                                <option value="7">Saturday</option>{" "}
+                              </select>
                             </div>
-                          </div>
+                          )}
+
+                          {isEdit.frequency === "monthly" && (
+                            <div>
+                              <label className="form-label">Select Day:</label>
+                              <select
+                                name="repeat"
+                                className="form-control"
+                                value={isEdit.repeat}
+                                onChange={handleChange}
+                              >
+                                <option value="0">Please Select</option>
+                                <option value="2">Monday</option>
+                                <option value="6">Friday</option>
+                              </select>
+                            </div>
+                          )}
+
+                          {isEdit.frequency === "daily" && (
+                            <div>
+                              <label className="form-label">No Repeat:</label>
+                            </div>
+                          )}
 
                           <div>
-                            <label className="form-label">Frequency:</label>
+                            <label className="form-label">Time:</label>
                             <select
                               name="frequency"
                               className="form-control"
@@ -424,6 +482,15 @@ const Scheduler = () => {
                               <option value="1:00 AM">1:00 AM</option>
                               <option value="2:00 AM">2:00 AM</option>
                               <option value="3:00 AM">3:00 AM</option>
+                              <option value="4:00 AM">4:00 AM</option>
+                              <option value="5:00 AM">5:00 AM</option>
+                              <option value="6:00 AM">6:00 AM</option>
+                              <option value="7:00 AM">7:00 AM</option>
+                              <option value="8:00 AM">8:00 AM</option>
+                              <option value="9:00 AM">9:00 AM</option>
+                              <option value="10:00 AM">10:00 AM</option>
+                              <option value="11:00 AM">11:00 AM</option>
+                              <option value="12:00 PM">12:00 PM</option>
                             </select>
                           </div>
 
